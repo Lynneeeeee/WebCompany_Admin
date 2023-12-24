@@ -8,6 +8,29 @@
             :particlesLoaded="particlesLoaded"
             :options="options"
         />
+        <div class = "FormContainer">
+            <h3> Company Webiste Demo By Ying</h3>
+            <el-form
+                ref="loginFormRef"
+                :model="loginForm"
+                status-icon
+                :rules="loginRules"
+                label-width="90px"
+                class="loginform"
+            >
+                <el-form-item label="UserName" prop="username">
+                <el-input v-model="loginForm.username" type="username" autocomplete="off" />
+                </el-form-item> 
+
+                <el-form-item label="Password" prop="password">
+                <el-input v-model="loginForm.password" type="password" autocomplete="off" />
+                </el-form-item>
+
+                <el-form-item>
+                <el-button type="primary" @click="submitForm()">Login</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
     <!-- <button @click ="handleLogin" >login</button> -->
 </template>
@@ -17,6 +40,45 @@
 //     localStorage.setItem("token", "ManualToken")
 // }
 import { loadSlim } from "tsparticles-slim";
+import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+
+// binding a reactive object to form
+const loginForm = reactive({
+    username: "",
+    password: ""
+})
+
+const loginRules = reactive({
+  username: [
+    { required: true, message: 'Please input Activity name', trigger: 'blur' },
+    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: 'Please input password', triggrt: 'blur'}
+  ]
+})
+  
+const loginFormRef = ref() // the reference object of form
+
+const router = useRouter()
+
+const submitForm = () => {
+    // 1. Validate form input, prevent from submit empty form
+    // loginRules only validates when blur
+    loginFormRef.value.validate((valid)=> {
+        // func validate: triggers after a form item is validated
+        if(valid){
+            console.log(loginForm) // 2-way binding so can get value from loginForm
+            localStorage.setItem("token", "ManualToken");
+
+            router.push("/")
+        }
+    })
+    // 2. submit form to back end
+    // 3. set token
+}
+
 
 const particlesInit = async engine => {
     await loadSlim(engine);
@@ -106,3 +168,31 @@ const options = {
                     detectRetina: true
                 }
 </script>
+
+<!-- background of FormContainer -->
+<style lang = "scss" scoped>.FormContainer{
+    width: 500px;
+    height: 300px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    color: white;
+    text-align: center;
+    padding: 20px;
+
+    h3{
+        font-size: 25px;
+        text-shadow: 5px -5px rgba($color: white, $alpha: 0.1);
+        font-family: Palatino, URW Palladio L, serif
+        // font-style: monospace;
+    }
+    .loginform{
+        margin-top: 20px;
+    }
+}
+::v-deep .el-form-item__label{
+    color: white
+}
+</style>
