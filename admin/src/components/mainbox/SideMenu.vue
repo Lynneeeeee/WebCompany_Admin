@@ -3,7 +3,8 @@
         <el-menu 
         :collapse="$store.state.isCollapsed" 
         :collapse-transition = "true" 
-        :router = "true">
+        :router = "true"
+        :default-active="route.fullPath">
         <!-- router: open vue-router mode, will navigate to index as path -->
 
             <el-menu-item index="/index">
@@ -54,5 +55,8 @@
 </template>
 
 <script setup>
-import {HomeFilled,Avatar,User,MessageBox,Reading,Pointer} from '@element-plus/icons-vue'
+import { HomeFilled,Avatar,User,MessageBox,Reading,Pointer } from '@element-plus/icons-vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 </script>
