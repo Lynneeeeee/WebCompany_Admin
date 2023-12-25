@@ -1,8 +1,12 @@
 <template>
     <el-aside :width=auto>
-        <el-menu :collapse="$store.state.isCollapsed" :collapse-transition = "true">
+        <el-menu 
+        :collapse="$store.state.isCollapsed" 
+        :collapse-transition = "true" 
+        :router = "true">
+        <!-- router: open vue-router mode, will navigate to index as path -->
 
-            <el-menu-item index="/home">
+            <el-menu-item index="/index">
             <el-icon><HomeFilled/></el-icon>
             <span>Home</span>
             </el-menu-item>
@@ -29,8 +33,8 @@
                 <span>News Management</span>
             </template>
             <el-menu-item-group title="news-manage">
-                <el-menu-item index="news-manage/addnews">Add News</el-menu-item>
-                <el-menu-item index="news-manage/listnews">News List</el-menu-item>
+                <el-menu-item index="/news-manage/addnews">Add News</el-menu-item>
+                <el-menu-item index="/news-manage/listnews">News List</el-menu-item>
             </el-menu-item-group>
             </el-sub-menu>
 
