@@ -1,10 +1,15 @@
 <template>
     <el-aside :width=auto>
         <el-menu 
+        active-text-color="#00FFFF"
+        background-color="#1C1C1C"
+        text-color="#DCDCDC"
         :collapse="$store.state.isCollapsed" 
         :collapse-transition = "true" 
         :router = "true"
-        :default-active="route.fullPath">
+        :default-active="route.fullPath"
+        class="el-menu-vertical-demo"
+        default-active="2">
         <!-- router: open vue-router mode, will navigate to index as path -->
 
             <el-menu-item index="/index">
@@ -87,5 +92,7 @@ const route = useRoute()
 // make the sidebar fill the height of screen
 .el-menu{
     height: 100vh;
+    // background-color: black;
+    // color: var(--text-color) !important;
 }
  </style>

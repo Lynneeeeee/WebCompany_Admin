@@ -27,12 +27,11 @@
                 </el-form-item>
 
                 <el-form-item>
-                <el-button type="primary" @click="submitForm()">Login</el-button>
+                <el-button @click="submitForm()">Login</el-button>
                 </el-form-item>
             </el-form>
         </div>
     </div>
-    <!-- <button @click ="handleLogin" >login</button> -->
 </template>
 
 <script setup>
@@ -92,7 +91,7 @@ const particlesLoaded = async container => {
 const options = {
                     background: {
                         color: {
-                            value: '#2d3a4b'
+                            value: '1C1C1C'
                         }
                     },
                     fpsLimit: 120,
@@ -170,7 +169,11 @@ const options = {
 </script>
 
 <!-- background of FormContainer -->
-<style lang = "scss" scoped>.FormContainer{
+<style lang = "scss" scoped>
+// body{
+//     position: relative;
+// }
+.FormContainer{
     width: 500px;
     height: 300px;
     position: fixed;
@@ -190,6 +193,46 @@ const options = {
     }
     .loginform{
         margin-top: 20px;
+    }
+}
+::v-deep .el-button{
+        width: 400px;
+        height: 50px;
+        text-align: center;
+        font-size: 20px;
+        box-sizing: border-box;
+        color: #fff;
+        background:
+        linear-gradient(90deg, #eaf979, #8aed71, #4fbef6,#8aed71,#eaf979);
+        border-radius: 20px;
+        background-size: 400%;
+        z-index: 1;
+    &:hover{
+        animation: animate 10s linear infinite;
+    }
+    @keyframes animate{
+        from{
+            background-position: 0%;
+        }
+        to{
+            background-position: 400%;
+        }
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        inset: -5px;
+        z-index: -1;
+        background:
+        linear-gradient(90deg, #eaf979, #8aed71, #4fbef6,#8aed71,#eaf979);
+        background-size: 400%;
+        border-radius: 40px;
+        opacity: 0;
+    }
+    &:hover::before{
+        filter: blur(20px);
+        opacity: 1;
+        animation: animate 10s linear infinite;
     }
 }
 ::v-deep .el-form-item__label{
