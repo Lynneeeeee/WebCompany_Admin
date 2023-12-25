@@ -13,24 +13,20 @@
   margin: 0;
   padding: 0
 }
-// #app {
-//   font-family: Avenir, Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   text-align: center;
-//   color: #2c3e50;
-// }
 
-// nav {
-//   padding: 30px;
+::-webkit-scrollbar{
+  width: 10px;
+  position: absolute
+}
 
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
+::-webkit-scrollbar-thumb{
+    height: 50px;
+    background-image: -webkit-linear-gradient(90deg, #eaf979, #8aed71, #4fbef6);
+    -webkit-border-radius: 4px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 2px solid #fff;
+}
 
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
+
 </style>

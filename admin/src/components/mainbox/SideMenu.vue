@@ -50,6 +50,28 @@
             </el-menu-item-group>
             </el-sub-menu>
 
+            <el-sub-menu index="/prod-manage">
+            <template #title>
+                <el-icon><Reading /></el-icon>
+                <span>Product Management</span>
+            </template>
+            <el-menu-item-group title="/prod-manage">
+                <el-menu-item index="/prod-manage/addprod">Add product</el-menu-item>
+                <el-menu-item index="/prod-manage/listprod">Products List</el-menu-item>
+            </el-menu-item-group>
+            </el-sub-menu>
+
+            <el-sub-menu index="/prod-manage">
+            <template #title>
+                <el-icon><Reading /></el-icon>
+                <span>Product Management</span>
+            </template>
+            <el-menu-item-group title="/prod-manage">
+                <el-menu-item index="/prod-manage/addprod">Add product</el-menu-item>
+                <el-menu-item index="/prod-manage/listprod">Products List</el-menu-item>
+            </el-menu-item-group>
+            </el-sub-menu>
+
         </el-menu>
     </el-aside>
 </template>
@@ -60,3 +82,10 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 </script>
+
+<style lang = "scss" scoped>
+// make the sidebar fill the height of screen
+.el-menu{
+    height: 100vh;
+}
+ </style>
