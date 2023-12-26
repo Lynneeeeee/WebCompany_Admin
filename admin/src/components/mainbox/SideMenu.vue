@@ -89,10 +89,23 @@ const route = useRoute()
 </script>
 
 <style lang = "scss" scoped>
+::-webkit-scrollbar{
+    width: 10px;
+    position: absolute
+}
+
+::-webkit-scrollbar-thumb{
+    height: 50px;
+    background-image: -webkit-linear-gradient(90deg, #eaf979, #8aed71, #4fbef6);
+    -webkit-border-radius: 4px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 2px solid #fff;
+}
 // make the sidebar fill the height of screen
 .el-menu{
     height: 100vh;
     // background-color: black;
     // color: var(--text-color) !important;
 }
- </style>
+</style>

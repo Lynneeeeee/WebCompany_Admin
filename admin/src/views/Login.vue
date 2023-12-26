@@ -9,7 +9,7 @@
             :options="options"
         />
         <div class = "FormContainer">
-            <h3> Company Webiste Demo By Ying</h3>
+            <h3> Company Website Demo By Ying</h3>
             <el-form
                 ref="loginFormRef"
                 :model="loginForm"
@@ -27,7 +27,7 @@
                 </el-form-item>
 
                 <el-form-item>
-                <el-button @click="submitForm()">Login</el-button>
+                <el-button type="primary" @click="submitForm()">Login</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -35,9 +35,6 @@
 </template>
 
 <script setup>
-// const handleLogin = () => {
-//     localStorage.setItem("token", "ManualToken")
-// }
 import { loadSlim } from "tsparticles-slim";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
@@ -49,15 +46,15 @@ const loginForm = reactive({
 })
 
 const loginRules = reactive({
-  username: [
-    { required: true, message: 'Please input Activity name', trigger: 'blur' },
-    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
-  ],
-  password: [
-    { required: true, message: 'Please input password', triggrt: 'blur'}
-  ]
+    username: [
+        { required: true, message: 'Please input Activity name', trigger: 'blur' },
+        { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+    ],
+    password: [
+        { required: true, message: 'Please input password', triggrt: 'blur'}
+    ]
 })
-  
+
 const loginFormRef = ref() // the reference object of form
 
 const router = useRouter()
@@ -70,7 +67,6 @@ const submitForm = () => {
         if(valid){
             console.log(loginForm) // 2-way binding so can get value from loginForm
             localStorage.setItem("token", "ManualToken");
-
             router.push("/")
         }
     })
@@ -201,7 +197,6 @@ const options = {
         text-align: center;
         font-size: 20px;
         box-sizing: border-box;
-        color: #fff;
         background:
         linear-gradient(90deg, #eaf979, #8aed71, #4fbef6,#8aed71,#eaf979);
         border-radius: 20px;

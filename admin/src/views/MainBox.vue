@@ -1,6 +1,6 @@
 <!-- The main scene after login -->
 <template>
-    <el-container  class = "screen" direction = "vertical">
+    <el-container class = "screen" direction = "vertical">
         <TopHeader/>
         <el-container direction = "horizontal">
             <SideMenu/>
@@ -23,4 +23,4 @@ import TopHeader from '@/components/mainbox/TopHeader.vue';
 .screen{
     height: 100vh;
 }
- </style>
+</style>
