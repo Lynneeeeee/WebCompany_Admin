@@ -1,11 +1,11 @@
 <template>
-    <el-aside :width=auto>
+    <el-aside :width="$store.state.isCollapsed?'64px':'230px'">
         <el-menu 
         active-text-color="#00FFFF"
         background-color="#1C1C1C"
         text-color="#DCDCDC"
         :collapse="$store.state.isCollapsed" 
-        :collapse-transition = "true" 
+        :collapse-transition = "false" 
         :router = "true"
         :default-active="route.fullPath"
         class="el-menu-vertical-demo"
@@ -19,7 +19,7 @@
 
             <el-menu-item index="/center">
             <el-icon><Avatar /></el-icon>
-            <span>Profile</span>
+            <span>Your Account</span>
             </el-menu-item>
 
             <el-sub-menu index="/user-manage">
