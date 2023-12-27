@@ -35,9 +35,10 @@
 </template>
 
 <script setup>
-import { loadSlim } from "tsparticles-slim";
-import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
+import { loadSlim } from "tsparticles-slim"
+import { reactive, ref } from "vue"
+import { useRouter } from "vue-router"
+import axios from "axios"
 
 // binding a reactive object to form
 const loginForm = reactive({
@@ -67,6 +68,9 @@ const submitForm = () => {
         if(valid){
             console.log(loginForm) // 2-way binding so can get value from loginForm
             localStorage.setItem("token", "ManualToken");
+            axios.get("/users").then(res=>{
+                console.log(res.data)
+            })
             router.push("/")
         }
     })

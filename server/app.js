@@ -1,3 +1,9 @@
+/*
+Target: 2 kinds of api:
+ /adminapi/*: for back end management system
+ /webapi/*: for company website
+*/
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
