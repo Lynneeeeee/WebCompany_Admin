@@ -42,7 +42,7 @@ const handleCenter = () => {
 }
 
 const handleLogOut = () => {
-    localStorage.removeItem("token ")
+    localStorage.removeItem("token")
     router.push("/login")
 }
 

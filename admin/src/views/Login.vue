@@ -66,12 +66,12 @@ const submitForm = () => {
     loginFormRef.value.validate((valid)=> {
         // func validate: triggers after a form item is validated
         if(valid){
-            console.log(loginForm) // 2-way binding so can get value from loginForm
-            localStorage.setItem("token", "ManualToken");
-            axios.get("/users").then(res=>{
+            // console.log(loginForm) // 2-way binding so can get value from loginForm
+            // localStorage.setItem("token", "ManualToken");
+            axios.post("/adminapi/user/login", loginForm).then(res=>{
                 console.log(res.data)
             })
-            router.push("/")
+            // router.push("/")
         }
     })
     // 2. submit form to back end

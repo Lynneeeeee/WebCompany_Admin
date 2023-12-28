@@ -1,9 +1,3 @@
-/*
-Target: 2 kinds of api:
- /adminapi/*: for back end management system
- /webapi/*: for company website
-*/
-
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -12,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const UserRouter = require('./routes/admin/UserRouter')
 
 var app = express();
 
@@ -27,6 +22,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+/*
+Target: 2 kinds of api:
+ /adminapi/*: for back end management system
+ /webapi/*: for company website
+*/
+app.use(UserRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
