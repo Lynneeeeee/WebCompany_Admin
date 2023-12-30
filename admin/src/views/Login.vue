@@ -39,6 +39,7 @@ import { loadSlim } from "tsparticles-slim"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
+import { ElMessage } from 'element-plus'
 
 // binding a reactive object to form
 const loginForm = reactive({
@@ -67,13 +68,21 @@ const submitForm = () => {
         // func validate: triggers after a form item is validated
         if(valid){
             // console.log(loginForm) // 2-way binding so can get value from loginForm
-            // localStorage.setItem("token", "ManualToken");
             axios.post("/adminapi/user/login", loginForm).then(res=>{
                 console.log(res.data)
+                if(res.data.ActionType === "OK"){
+                    // localStorage.setItem("token", "ManualToken")
+                    router.push("/")
+                    ElMessage({
+                        message: 'Log in successfully',
+                        type: 'success',
+                    })
+                } else {
+                    ElMessage.error('Oops, wrong username or password')
+                }
             })
-            // router.push("/")
         }
-    })
+    }) 
     // 2. submit form to back end
     // 3. set token
 }

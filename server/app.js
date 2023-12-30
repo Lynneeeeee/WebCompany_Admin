@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const UserRouter = require('./routes/admin/UserRouter')
+const JWT = require('./util/JWT');
+const { ErrorCodes } = require('vue');
 
 var app = express();
 
@@ -25,9 +27,39 @@ app.use('/users', usersRouter);
 
 /*
 Target: 2 kinds of api:
- /adminapi/*: for back end management system
- /webapi/*: for company website
+  /adminapi/*: for back end management system
+  /webapi/*: for company website
 */
+app.use((req, res, next)=>{
+  // the first time login doesn't have valid token
+  if(req.url === "/adminapi/user/login"){
+    next()
+    return;
+  }
+
+  const token = req.headers["authorization"].split(" ")[1]
+  // if token is verified successfully, next()
+  if(token){
+    var payload = JWT.verify(token)
+    console.log("payload: ",payload)
+    if(payload){
+      // refresh expire time of token
+      const newToken = JWT.generate({
+        _id: payload._id, 
+        username: payload.username
+      }, "10s")
+      res.header("Authorization", newToken)
+      next()
+    } else {
+      res.status(401).send({errCode: "-1", errorInfo:"token expired"})
+    }
+    // next()
+  } 
+  // else {
+  //   // if token is invalid or expired, return 401
+  //   return 401
+  // }
+})
 app.use(UserRouter)
 
 
