@@ -7,7 +7,7 @@
         </div>
         <div class="right">
             <span style="margin-right: 10px;" color="white">
-                    Welcom! Admin
+                    Welcom! {{ $store.state.userInfo.username }}
             </span>
             <el-dropdown>
                 <el-icon :size="25" color="white">
@@ -43,6 +43,7 @@ const handleCenter = () => {
 
 const handleLogOut = () => {
     localStorage.removeItem("token")
+    store.commit("clearUserInfo")
     router.push("/login")
 }
 

@@ -29,7 +29,7 @@ axios.interceptors.response.use(
     function (error) {
         // any status code that falls outside the range of 2xx cause this function to trigger
         // do sth with response error
-        // console.log(error.response.data)
+        console.log(error.response.data)
         const { status } = error.response
         if(status === 401){
             localStorage.removeItem("token")

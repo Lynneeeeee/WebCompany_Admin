@@ -20,7 +20,15 @@ const UserController = {
             // write token into header
             res.header("Authorization", token)
             res.send({
-                ActionType: "OK"
+                ActionType: "OK",
+                data: {
+                    username: result[0].username,
+                    // password: String,
+                    gender: result[0].gender?result[0].gender:0, // 0: none, 1, 2
+                    intro: result[0].intro, // profile introduction
+                    avatar: result[0].avatar,
+                    role: result[0].role, // Manager1, editor2, ...
+                }
             })
         }
     }

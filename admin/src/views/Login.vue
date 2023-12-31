@@ -40,6 +40,9 @@ import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
 import { ElMessage } from 'element-plus'
+import { useStore } from 'vuex'
+
+const store = useStore() 
 
 // binding a reactive object to form
 const loginForm = reactive({
@@ -72,6 +75,8 @@ const submitForm = () => {
                 console.log(res.data)
                 if(res.data.ActionType === "OK"){
                     // localStorage.setItem("token", "ManualToken")
+                    // console.log(res.data.data)
+                    store.commit("changeUserInfo", res.data.data)
                     router.push("/")
                     ElMessage({
                         message: 'Log in successfully',
